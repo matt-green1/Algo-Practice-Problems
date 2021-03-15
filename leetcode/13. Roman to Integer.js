@@ -21,13 +21,22 @@
         
 */
 
+// the preceding number will always be larger than the following one
+// UNLESS it should be subtracted in the case of IV etc
 
 var romanToInt = function(s) {
     numeralObj = {"I":1, "V":5, "X":10, "L":50, "C":100, "D": 500, "M": 1000}
+    totalCount = 0
     
-    for( i = s.length - 1;i >=0 ; i-- ){
-        console.log(numeralObj[s[i]])
+    for( i = 0 ; i < s.length ; i++ ){
+        if(numeralObj[s[i]] < numeralObj[s[i+1]]){
+           totalCount -= numeralObj[s[i]]
+           } else {
+           totalCount += numeralObj[s[i]]
+           }
+        
+        
     }
-  
-    // Next steps - don't need to go backwards, loop through and look at a number and it's preceding number
+    return totalCount
+    
 };
